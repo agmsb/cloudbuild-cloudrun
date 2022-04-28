@@ -1,0 +1,11 @@
+steps:
+  # Build container image.
+- id: Build container image
+  name: "gcr.io/k8s-skaffold/pack"
+  entrypoint: "pack"
+  args:
+    - 'build'
+    - '--publish'
+    - 'gcr.io/agmsb-k8s/cd-cloudbuild-app:latest'
+    - '--builder'
+    - 'gcr.io/buildpacks/builder'
