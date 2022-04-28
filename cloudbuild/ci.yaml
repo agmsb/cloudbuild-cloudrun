@@ -16,6 +16,6 @@ steps:
   args:
     - 'build'
     - '--publish'
-    - 'gcr.io/agmsb-k8s/cd-cloudbuild-app:${SHORT_SHA}'
+    - 'gcr.io/agmsb-k8s/cd-cloudbuild-app:latest'
     - '--builder'
     - 'gcr.io/buildpacks/builder'
