@@ -1,10 +1,10 @@
 steps:
 # Deploy to Cloud Run, no traffic
-- id: Deploy to Cloud Run
+- id: Deploy latest to Cloud Run
   name: 'gcr.io/cloud-builders/gcloud'
   args: ['run','deploy', 'cd-cloudbuild-app', '--image', 'gcr.io/agmsb-k8s/cd-cloudbuild-app:latest', '--region', 'us-central1', '--platform', 'managed', '--no-traffic']
 # Deploy to Cloud Run, update traffic
-- id: Deploy to Cloud Run
+- id: Update 20% traffic to latest
   name: 'gcr.io/cloud-builders/gcloud'
   args:
     - -c
