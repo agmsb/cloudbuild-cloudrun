@@ -7,6 +7,12 @@ steps:
 - id: Generate traffic
   name: 'gcr.io/cloud-builders/gcloud'
   entrypoint: 'bash'
-  args: ['for', 'i', 'in', '{1..200}', ';', 'do', 'curl', '-H', '"Authorization:', 'Bearer', '$(gcloud auth print-identity-token)"', 'https://cd-cloudbuild-app-tjjxnhbjna-uc.a.run.app', ';', 'done'] 
+  args: 
+    - -c
+    - |
+      for i in {1..200}
+      do
+        curl -H "Authorization: Bearer $(gcloud auth print identity-token)" https://cd-cloudbuild-app-tjjxnhbjna-uc.a.run.app
+      done
 options:
   logging: CLOUD_LOGGING_ONLY
