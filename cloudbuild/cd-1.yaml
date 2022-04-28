@@ -6,6 +6,7 @@ steps:
 # Deploy to Cloud Run, update traffic
 - id: Update 20% traffic to latest
   name: 'gcr.io/cloud-builders/gcloud'
+  entrypoint: 'bash'
   args:
     - -c
     - |
