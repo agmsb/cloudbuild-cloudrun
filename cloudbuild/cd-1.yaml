@@ -10,8 +10,8 @@ steps:
   args:
     - -c
     - |
-      gcloud run services update-traffic cd-cloudbuild-app --to-revisions LATEST=20
-# Issue traffic
+      gcloud run services update-traffic cd-cloudbuild-app --to-revisions LATEST=20 --region us-central1
+# Issue traffic to Cloud Run app
 - id: Generate traffic
   name: 'gcr.io/cloud-builders/gcloud'
   entrypoint: 'bash'
