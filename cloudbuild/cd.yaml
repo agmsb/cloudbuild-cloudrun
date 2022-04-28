@@ -6,7 +6,7 @@ steps:
   args:
     - '-c'
     - |
-      PORT=8080 && docker run -p 9090:${PORT} -e PORT=${PORT} gcr.io/agmsb-k8s/cd-cloudbuild-app:latest
+      PORT=5000 && docker run -p 9090:${PORT} -e PORT=${PORT} gcr.io/agmsb-k8s/cd-cloudbuild-app:latest
 
 # Deploy to Cloud Run
 - id: Deploy to Cloud Run
