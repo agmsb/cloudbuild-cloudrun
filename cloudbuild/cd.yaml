@@ -1,4 +1,13 @@
 steps:
+# Standup container
+- id: Test container run
+  name: 'gcr.io/cloud-builders/docker'
+  entrypoint: bash
+  args:
+    - '-c'
+    - |
+      PORT=8080 && docker run -p 9090:${PORT} -e PORT=${PORT} gcr.io/agmsb-k8s/cd-cloudbuild-app:latest
+
 # Deploy to Cloud Run
 - id: Deploy to Cloud Run
   name: 'gcr.io/cloud-builders/gcloud'
