@@ -1,0 +1,9 @@
+steps:
+# Deploy to Cloud Run, update traffic
+- id: Update 20% traffic to latest
+  name: 'gcr.io/cloud-builders/gcloud'
+  entrypoint: 'bash'
+  args:
+    - -c
+    - |
+      gcloud run services update-traffic cd-cloudbuild-app --to-latest --region us-central1
