@@ -18,6 +18,7 @@ steps:
   args: 
     - -c
     - |
+      gcloud auth print-identity-token
       for i in {1..200}
       do
         curl -H "Authorization: Bearer $(gcloud auth print-identity-token)" https://cd-cloudbuild-app-tjjxnhbjna-uc.a.run.app
