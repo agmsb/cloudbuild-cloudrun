@@ -2,7 +2,14 @@ steps:
 # Deploy to Cloud Run, no traffic
 - id: Deploy to Cloud Run
   name: 'gcr.io/cloud-builders/gcloud'
-  args: ['run', 'deploy', 'cd-cloudbuild-app', '--image', 'gcr.io/agmsb-k8s/cd-cloudbuild-app:latest', '--region', 'us-central1', '--platform', 'managed', '--no-traffic']
+  args: ['run','deploy', 'cd-cloudbuild-app', '--image', 'gcr.io/agmsb-k8s/cd-cloudbuild-app:latest', '--region', 'us-central1', '--platform', 'managed', '--no-traffic']
+# Deploy to Cloud Run, update traffic
+- id: Deploy to Cloud Run
+  name: 'gcr.io/cloud-builders/gcloud'
+  args:
+    - -c
+    - |
+      gcloud run services update-traffic cd-cloudbuild-app --to-revisions LATEST=20
 # Issue traffic
 - id: Generate traffic
   name: 'gcr.io/cloud-builders/gcloud'
@@ -12,7 +19,7 @@ steps:
     - |
       for i in {1..200}
       do
-        curl -H "Authorization: Bearer $(gcloud auth print identity-token)" https://cd-cloudbuild-app-tjjxnhbjna-uc.a.run.app
+        curl -H "Authorization: Bearer $(gcloud auth print-identity-token)" https://cd-cloudbuild-app-tjjxnhbjna-uc.a.run.app
       done
 options:
   logging: CLOUD_LOGGING_ONLY
