@@ -1,4 +1,14 @@
 steps:
+  # Run unit test
+- id: Test app
+  name: "python:3.7"
+  entrypoint: 'bash'
+  args:
+    - '-c'
+    - |
+      pip3 install -r requirements.txt
+      python3 test_main.py .
+
   # Build container image.
 - id: Build container image
   name: "gcr.io/k8s-skaffold/pack"
@@ -6,6 +16,6 @@ steps:
   args:
     - 'build'
     - '--publish'
-    - 'gcr.io/agmsb-k8s/cd-cloudbuild-app:latest'
+    - 'gcr.io/agmsb-k8s/cd-cloudbuild-app:${SHORT_SHA}'
     - '--builder'
     - 'gcr.io/buildpacks/builder'
